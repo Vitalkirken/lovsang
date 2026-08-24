@@ -93,6 +93,11 @@ ol.sanger li:last-child{border-bottom:0}
 .toneart{display:inline-block;margin-left:10px;padding:2px 8px;background:var(--kull);
   color:var(--sand);font-size:11.5px;font-weight:600;letter-spacing:.04em;vertical-align:2px}
 .knapperad{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 14px}
+.filliste{display:flex;flex-direction:column;gap:7px;margin:-6px 0 16px;
+  padding:12px 14px;background:var(--papir);border:1px solid var(--strek)}
+.filliste p{margin:0 0 3px;font-size:12.5px;color:var(--grus)}
+.filliste a{color:var(--kull);font-size:13.5px;font-weight:600;
+  text-decoration:underline;text-underline-offset:2px}
 .lastned{font:inherit;font-size:12.5px;font-weight:600;letter-spacing:.01em;
   background:var(--kull);color:var(--sand);border:0;padding:9px 15px;cursor:pointer}
 .lastned:hover{background:#000}
@@ -623,9 +628,27 @@ function samleFiler(iso, hvor){
    selve fila (dl=1), så nettleseren laster den ned uten å forlate siden.
    Er du ikke logget inn i Dropbox, skjer det ingenting — da må du åpne
    lenkene under i stedet. */
+/* Safari på iPhone og iPad nekter nedlastinger som starter i en skjult ramme,
+   og tar uansett bare én fil om gangen. Der viser vi lenkene i stedet, så
+   du trykker deg gjennom dem. Det er en begrensning i iOS, ikke i siden. */
+const ER_IOS = /iP(hone|ad|od)/.test(navigator.userAgent)
+  || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
 window.lastNedAlle = function(knapp, iso, hvor){
   const filer = samleFiler(iso, hvor);
   if(!filer.length) return;
+  if(ER_IOS){
+    const rad = knapp.closest('.knapperad');
+    const fra = rad.nextElementSibling;
+    if(fra && fra.classList.contains('filliste')){ fra.remove(); return; }
+    const liste = document.createElement('div');
+    liste.className = 'filliste';
+    liste.innerHTML = `<p>Safari laster ned én fil om gangen. Trykk på hver:</p>`
+      + filer.map((n,k)=>`<a href="${filUrl(hvor,n).replace('dl=0','dl=1')}"
+           target="_blank" rel="noopener">${k+1}. ${esc(n.replace(/\.[a-z0-9]+$/i,''))}</a>`).join('');
+    rad.after(liste);
+    return;
+  }
   const tekst = knapp.dataset.tekst || knapp.textContent;
   knapp.dataset.tekst = tekst;
   knapp.disabled = true;
