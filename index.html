@@ -294,6 +294,15 @@ const FILID = {
  'blekke:In christ alone.pdf':'AOoHhoQr1QKKGe8LoqZGvbc',
  'blekke:Yet Not I But Through Christ.pdf':'AAkmiZ2iamergy5FR2K2nj4',
  'blekke:Nåde (D-dur) UNDHEIM.pdf':'ALmRlxkFexIR-t-pWvQWUwQ',
+ /* høstet 10. september 2026 */
+ 'blekke:Det skjer et under i verden - 591.pdf':'AFZHCXQU2-krjFPk1s91GCA',
+ 'blekke:JEG-ER-TRYGG-HOS-DEG.pdf':'AIXSdWhfdL3k-3lSonVXqJA',
+ 'blekke:Revelation Song.pdf':'AEE7-n_DW_vpm-SpCC2tXr0',
+ 'blekke:Hjerteslag.pdf':'AOt9snNjXJGqxqwwFfx7b4Y',
+ 'tekst:Det skjer et under i verden.pdf':'AOfUo1boFePQMGqSwKGWIMA',
+ 'tekst:JEG-ER-TRYGG-HOS-DEG.pdf':'AONKEeIjSIYZD328MnHu6TA',
+ 'tekst:Revelation song, tekst.pdf':'AEU87MIiDsbXqa1u4jgzeyU',
+ 'tekst:Hjerteslag.pdf':'ADqtq7O8azIpvyOz5MW5y6E',
  /* høstet 23. august 2026 */
  'blekke:Den samme kraft, Bb, Neteland.pdf':'ALLgTjuP5H-VD5wAo3lgPDo',
  'blekke:Treenig-Gud-D-Filadelfiakirken-2020.pdf':'APfwpIocINTRTbU46eorbjY',
@@ -675,6 +684,7 @@ function tegnSanger(iso){
     + `<ol class="sanger">`+valg.map(v=>{
     const s=DATA.sanger.get(normTitle(v.tittel));
     const files=s ? fil(s.tekstfil,'tekst','Sangtekst')+fil(s.blekkefil,'blekke','Blekke')
+                    + spotifyKnapp(s)
                   : `<span class="mangler">Står ikke i sangbanken — sjekk skrivemåten</span>`;
     const merk=[];
     if(s&&s.toneart) merk.push(esc(s.toneart));
