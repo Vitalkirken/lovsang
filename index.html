@@ -135,6 +135,42 @@ table.bank .filer a{white-space:nowrap}
   table.bank td[data-nok]::before{content:attr(data-nok);flex:0 0 76px;font-size:10.5px;
     text-transform:uppercase;letter-spacing:.08em;color:var(--grus);padding-top:3px}
 }
+/* lydoppsett */
+#view-lyd .ingress{background:var(--papir);border:1px solid var(--strek);
+  padding:16px 18px;font-size:14.5px;line-height:1.65;margin:0 0 26px}
+#view-lyd h2{margin:34px 0 0;font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--grus)}
+#view-lyd h2:first-of-type{margin-top:0}
+#view-lyd h2 .tall{display:inline-flex;align-items:center;justify-content:center;
+  width:19px;height:19px;background:var(--kull);color:var(--sand);border-radius:50%;
+  font-size:10.5px;margin-right:8px;vertical-align:-3px;letter-spacing:0}
+ol.steg{list-style:none;margin:12px 0 0;padding:0;counter-reset:s var(--start,0)}
+ol.steg li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;
+  background:var(--papir);border:1px solid var(--strek);border-bottom:0;
+  padding:14px 16px;cursor:pointer}
+ol.steg li:last-child{border-bottom:1px solid var(--strek)}
+ol.steg li::before{content:counter(s);flex:0 0 26px;height:26px;margin-top:1px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--strek);border-radius:50%;
+  font-size:12.5px;font-weight:600;color:var(--grus);background:var(--sand)}
+ol.steg li.gjort{color:var(--grus)}
+ol.steg li.gjort .tekst{text-decoration:line-through;text-decoration-color:var(--strek)}
+ol.steg li.gjort::before{content:'✓';background:var(--kull);border-color:var(--kull);color:var(--sand)}
+ol.steg .tekst{flex:1;min-width:0;font-size:15.5px;line-height:1.55}
+ol.steg .tekst small{display:block;margin-top:4px;font-size:13px;color:var(--grus);line-height:1.5}
+#view-lyd kbd{font:600 14px/1 "Work Sans",sans-serif;background:var(--sand);
+  border:1px solid var(--strek);padding:2px 7px;white-space:nowrap}
+#view-lyd .varsel{font-size:14px;margin:12px 0 0}
+#view-lyd .tips{background:var(--papir);border:1px dashed var(--strek);
+  padding:13px 15px;font-size:14px;line-height:1.6;margin:12px 0 0}
+#view-lyd .ferdig{margin-top:34px;background:var(--kull);color:var(--sand);padding:20px 22px}
+#view-lyd .ferdig h3{margin:0 0 6px;font-size:17px;font-weight:600}
+#view-lyd .ferdig p{margin:0;font-size:14.5px;color:#cfccbe;line-height:1.6}
+#view-lyd .nullstill{margin-top:20px;margin-bottom:0}
+@media (max-width:560px){
+  ol.steg li{padding:13px 14px;gap:12px}
+  ol.steg .tekst{font-size:16px}
+}
 .tilstand{padding:30px 16px;text-align:center;color:var(--grus);font-size:14px}
 .varsel{background:var(--rust-lys);border-left:3px solid var(--rust);color:var(--rust);
   padding:13px 15px;font-size:13.5px;line-height:1.6;margin-bottom:16px}
@@ -165,6 +201,7 @@ footer{background:var(--kull);color:#a5a296;font-size:12.5px;line-height:1.6}
     <button id="tab-who" class="on">Hvem spiller</button>
     <button id="tab-set">Set-liste</button>
     <button id="tab-bank">Sangbank</button>
+    <button id="tab-lyd">Lyd</button>
   </nav>
 </header>
 
@@ -238,6 +275,81 @@ footer{background:var(--kull);color:#a5a296;font-size:12.5px;line-height:1.6}
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               allowfullscreen></iframe>
     </div>
+  </section>
+
+  <section id="view-lyd" class="skjult">
+    <p class="ingress">Følg stegene ovenfra og ned. <b>Trykk på et steg for å krysse det av</b> —
+      da ser du hvor du er hvis du blir avbrutt. Avkryssingen nullstilles når du laster siden på nytt.</p>
+
+    <h2><span class="tall">1</span>Sett opp racket</h2>
+    <ol class="steg">
+      <li><span class="tekst">Trekk racket ut fra plassen sin.</span></li>
+      <li><span class="tekst">Trill det fram på scenen, til høyre side.</span></li>
+      <li><span class="tekst">Ta av begge lokkene på racket — både foran og bak.
+        <small>Du trenger tilgang til begge sider.</small></span></li>
+    </ol>
+
+    <h2><span class="tall">2</span>Strøm</h2>
+    <ol class="steg" style="--start:3">
+      <li><span class="tekst">Finn strømkabelen i skuffen merket <kbd>Diverse</kbd>.</span></li>
+      <li><span class="tekst">Plugg den ene enden i veggkontakten og den andre foran på racket.</span></li>
+    </ol>
+
+    <h2><span class="tall">3</span>Koble racket til veggen</h2>
+    <ol class="steg" style="--start:5">
+      <li><span class="tekst">Finn to XLR-kabler.
+        <small>XLR er den runde mikrofonkabelen med tre pinner i enden.</small></span></li>
+      <li><span class="tekst">Koble dem i veggpanelet, i uttakene merket <kbd>Left</kbd> og <kbd>Right</kbd>.</span></li>
+      <li><span class="tekst">Koble den andre enden inn på høyre side av racket, i <kbd>L</kbd> og <kbd>R</kbd>.</span></li>
+    </ol>
+    <p class="varsel"><b>Sjekk displayet på veggen.</b> Det må stå på <b>Mixer</b>.
+      Står det på noe annet, kommer det ingen lyd i høyttalerne — uansett hvor riktig alt annet er koblet.</p>
+
+    <h2><span class="tall">4</span>Hent fram riktig oppsett på mikseren</h2>
+    <ol class="steg" style="--start:8">
+      <li><span class="tekst">Trykk <kbd>Scenes</kbd> på mikseren.</span></li>
+      <li><span class="tekst">Velg scenen som heter <kbd>Bruk denne</kbd>.</span></li>
+      <li><span class="tekst">Trykk <kbd>Recall</kbd>.
+        <small>Mikseren laster nå inn de ferdige innstillingene.</small></span></li>
+    </ol>
+    <p class="tips">Under <kbd>Config</kbd> ser du hvilken inngang som skal brukes til hva.
+      Ha den framme mens du kobler i neste steg.</p>
+
+    <h2><span class="tall">5</span>Koble til instrumenter og mikrofoner</h2>
+    <ol class="steg" style="--start:11">
+      <li><span class="tekst">Koble hver mikrofon og hvert instrument i riktig XLR-inngang, etter lista under Config.
+        <small>Kanalnummeret på racket må stemme med lista — ellers havner lyden på feil fader.</small></span></li>
+    </ol>
+
+    <h2><span class="tall">6</span>Sett opp iPaden</h2>
+    <ol class="steg" style="--start:12">
+      <li><span class="tekst">Lås opp iPaden. Kode: <kbd>111111</kbd></span></li>
+      <li><span class="tekst">Gå inn i innstillinger og koble til wifi-nettverket <kbd>Vital Mixer</kbd>.</span></li>
+      <li><span class="tekst">Åpne appen <kbd>CQ MixPad</kbd>.</span></li>
+      <li><span class="tekst">Velg <kbd>Choose unit</kbd>, og deretter <kbd>Vital</kbd>.</span></li>
+    </ol>
+
+    <h2><span class="tall">7</span>Sjekk at ingenting er mutet</h2>
+    <ol class="steg" style="--start:16">
+      <li><span class="tekst">Trykk <kbd>Fader</kbd> på mikseren.</span></li>
+      <li><span class="tekst">Bla gjennom lagene på venstre side: 1–8, 9–16 og så videre.</span></li>
+      <li><span class="tekst">Gå gjennom hver kanal du bruker og se at ingen er mutet.
+        Sjekk vokalkanalene og <kbd>Main</kbd> særlig nøye.
+        <small>Mutet betyr at kanalen er slått av. Knappen lyser vanligvis rødt — trykk for å slå muten av.</small></span></li>
+    </ol>
+
+    <h2><span class="tall">8</span>Til slutt</h2>
+    <ol class="steg" style="--start:19">
+      <li><span class="tekst">Snakk i en mikrofon og sjekk at du hører lyd i høyttalerne.</span></li>
+    </ol>
+
+    <div class="ferdig">
+      <h3>Da er du klar.</h3>
+      <p>Kommer det ingen lyd, gå tilbake til steg 9 og sjekk at veggdisplayet står på Mixer.
+         Det er den vanligste grunnen til stillhet.</p>
+    </div>
+
+    <button class="nullstill" id="lyd-nullstill">Nullstill avkryssingen</button>
   </section>
 </main>
 
@@ -891,7 +1003,19 @@ async function start(){
   tegnBank();
 }
 
-const FANER=[['tab-who','view-who'],['tab-set','view-set'],['tab-bank','view-bank']];
+/* Lydoppsettet: trykk på et steg for å krysse det av. Ingen lagring —
+   lista nullstilles ved ny innlasting, så neste person starter blankt. */
+document.getElementById('view-lyd').addEventListener('click', e=>{
+  const li = e.target.closest('ol.steg li');
+  if(li) li.classList.toggle('gjort');
+});
+document.getElementById('lyd-nullstill').addEventListener('click', e=>{
+  e.stopPropagation();
+  document.querySelectorAll('#view-lyd ol.steg li.gjort').forEach(li=>li.classList.remove('gjort'));
+});
+
+const FANER=[['tab-who','view-who'],['tab-set','view-set'],
+             ['tab-bank','view-bank'],['tab-lyd','view-lyd']];
 FANER.forEach(([knapp,visning])=>{
   document.getElementById(knapp).onclick=()=>{
     FANER.forEach(([k,v])=>{
